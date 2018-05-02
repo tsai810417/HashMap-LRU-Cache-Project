@@ -90,10 +90,5 @@ describe "Hashing" do
       b = {a: "a", b: "b"}
       expect(a.hash).not_to eq(b.hash)
     end
-
-    it "should check if hashed value is positive" do
-      a = {a: "a", b: "b"}
-      expect(a.hash).to be > 0
-    end
   end
 end
