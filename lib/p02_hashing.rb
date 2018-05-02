@@ -15,7 +15,9 @@ class Array
 end
 
 class String
-
+  def hash
+    self.each_byte.to_a.hash
+  end
 end
 
 class Hash
