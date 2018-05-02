@@ -79,12 +79,20 @@ class LinkedList
         node = node.next
       end
     end
-    if target
-      target.val = val
-    end
+    target.remove if target
   end
 
   def remove(key)
+    node = self.first
+    while node.next != nil
+      if node.key == key
+        target = node
+        break
+      else
+        node = node.next
+      end
+    end
+    target.remove if target
   end
 
   def each
