@@ -80,6 +80,7 @@ class LinkedList
       end
     end
     target.remove if target
+    target.val = val if target
   end
 
   def remove(key)
