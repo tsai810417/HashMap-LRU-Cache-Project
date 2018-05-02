@@ -47,9 +47,16 @@ class LinkedList
   end
 
   def get(key)
+    node = self.first
+    while node.next != nil
+      return node if node.key == key
+      node = node.next
+    end
+    return nil
   end
 
   def include?(key)
+    self.get(key) != nil
   end
 
   def append(key, val)
@@ -67,6 +74,10 @@ class LinkedList
   end
 
   def update(key, val)
+    node = self.get(key)
+    if node
+      node.val = val
+    end
   end
 
   def remove(key)
