@@ -49,7 +49,7 @@ class LinkedList
   def get(key)
     node = self.first
     while node.next != nil
-      return node if node.key == key
+      return node.val if node.key == key
       node = node.next
     end
     return nil
@@ -70,9 +70,17 @@ class LinkedList
   end
 
   def update(key, val)
-    node = self.get(key)
-    if node
-      node.val = val
+    node = self.first
+    while node.next != nil
+      if node.key == key
+        target = node
+        break
+      else
+        node = node.next
+      end
+    end
+    if target
+      target.val = val
     end
   end
 
