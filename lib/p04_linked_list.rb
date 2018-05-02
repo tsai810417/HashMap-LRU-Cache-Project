@@ -96,7 +96,12 @@ class LinkedList
     target.remove if target
   end
 
-  def each
+  def each(&prc)
+    node = self.first
+    while node.next != nil
+      prc.call(node)
+      node = node.next
+    end
   end
 
   # uncomment when you have `each` working and `Enumerable` included
