@@ -1,15 +1,21 @@
+require 'byebug'
+
 class Fixnum
   # Fixnum#hash already implemented for you
 end
 
 class Array
   def hash
+    hashed = 0
+    self.each_with_index do | el, i |
+      hashed += el * i
+    end
+    hashed
   end
 end
 
 class String
-  def hash
-  end
+
 end
 
 class Hash
