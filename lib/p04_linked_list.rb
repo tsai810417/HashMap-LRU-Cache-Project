@@ -20,6 +20,11 @@ end
 
 class LinkedList
   def initialize
+    @head = Node.new
+    @tail = Node.new
+    @head.next = @tail
+    @tail.prev = @head
+    @count = 0
   end
 
   def [](i)
