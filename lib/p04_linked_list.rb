@@ -70,8 +70,9 @@ class LinkedList
     node.next = @tail
     node.prev.next = node
     @tail.prev = node
-    @store.push(node)
     @count += 1
+    @store.push(node)
+    val
   end
 
   def update(key, val)

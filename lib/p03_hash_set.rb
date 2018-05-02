@@ -26,6 +26,7 @@ class HashSet
 
   def remove(key)
     num = key.hash
+    num *= -1 if num < 0
     @store[num % num_buckets].delete(key)
     @count -= 1
   end

@@ -18,9 +18,11 @@ class HashMap
     resize! if @count == num_buckets
     if bucket(key).include?(key)
       bucket(key).update(key, val)
+      val
     else
       bucket(key).append(key, val)
       @count += 1
+      val
     end
   end
 
@@ -60,7 +62,12 @@ class HashMap
   end
 
   def resize!
-    @store = @store.concat(Array.new(2 * num_buckets) { LinkedList.new })
+    new_store = Array.new(2 * num_buckets) { LinkedList.new }
+    self.each do | pair |
+      new_store[pair[0].hash % (2 * num_buckets)].append(pair[0], pair[1])
+    end
+    @store = new_store
+    # @store = @store.concat(Array.new(2 * num_buckets) { LinkedList.new })
   end
 
   def bucket(key)
