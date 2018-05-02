@@ -10,18 +10,32 @@ class HashMap
   end
 
   def include?(key)
+    bucket(key)
   end
 
   def set(key, val)
+    resize! if @count == num_buckets
+    if bucket(key).include?(key)
+      bucket(key).update(key, val)
+    else
+      bucket(key).append(key, val)
+      @count += 1
+    end
   end
 
   def get(key)
+    @store[key.hash % num_buckets].get(key)
   end
 
   def delete(key)
+    bucket(key).remove(key)
+    @count -= 1
   end
 
-  def each
+  def each(&prc)
+    num_buckets.times do | bucket |
+      prc.call(bucket)
+    end
   end
 
   # uncomment when you have Enumerable included
@@ -42,9 +56,11 @@ class HashMap
   end
 
   def resize!
+    @store = @store.concat(Array.new(2 * num_buckets) { LinkedList.new })
   end
 
   def bucket(key)
     # optional but useful; return the bucket corresponding to `key`
+    @store[key.hash % num_buckets]
   end
 end
