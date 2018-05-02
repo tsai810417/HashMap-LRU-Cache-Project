@@ -28,11 +28,12 @@ class LinkedList
     @tail = Node.new
     @head.next = @tail
     @tail.prev = @head
+    @store = Array.new()
     @count = 0
   end
 
   def [](i)
-    each_with_index { |node, j| return node if i == j }
+    @store.each_with_index { |node, j| return node if i == j }
     nil
   end
 
@@ -68,6 +69,7 @@ class LinkedList
     node.next = @tail
     node.prev.next = node
     @tail.prev = node
+    @store.push(node)
     @count += 1
   end
 
