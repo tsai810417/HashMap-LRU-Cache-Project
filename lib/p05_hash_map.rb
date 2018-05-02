@@ -33,10 +33,13 @@ class HashMap
     @count -= 1
   end
 
-  def each(&prc)
-    num_buckets.times do | bucket |
-      prc.call(bucket)
+  def each
+    @store.each do | bucket |
+      bucket.each do | node |
+        yield [node.key, node.val]
+      end
     end
+
   end
 
   # uncomment when you have Enumerable included
