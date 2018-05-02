@@ -1,3 +1,5 @@
+require 'byebug'
+
 class Node
   attr_accessor :key, :val, :next, :prev
 
@@ -79,7 +81,6 @@ class LinkedList
         node = node.next
       end
     end
-    target.remove if target
     target.val = val if target
   end
 
@@ -105,7 +106,7 @@ class LinkedList
   end
 
   # uncomment when you have `each` working and `Enumerable` included
-  # def to_s
-  #   inject([]) { |acc, node| acc << "[#{node.key}, #{node.val}]" }.join(", ")
-  # end
+  def to_s
+    inject([]) { |acc, node| acc << "[#{node.key}, #{node.val}]" }.join(", ")
+  end
 end
