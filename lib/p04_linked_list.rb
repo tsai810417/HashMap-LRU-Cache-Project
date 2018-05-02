@@ -35,9 +35,11 @@ class LinkedList
   end
 
   def first
+    @head.next
   end
 
   def last
+    @tail.prev
   end
 
   def empty?
@@ -50,6 +52,17 @@ class LinkedList
   end
 
   def append(key, val)
+    node = Node.new(key, val)
+    if @count == 0
+      @head.next = node
+      @tail.prev = node
+    else
+      node.prev = @tail.prev
+      node.next = @tail
+      node.prev.next = node
+      @tail.prev = node
+    end
+    @count += 1
   end
 
   def update(key, val)
