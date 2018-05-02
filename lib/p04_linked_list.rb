@@ -43,6 +43,7 @@ class LinkedList
   end
 
   def empty?
+    @head.next == @tail && @tail.prev == @head
   end
 
   def get(key)
