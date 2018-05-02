@@ -23,6 +23,7 @@ class Node
 end
 
 class LinkedList
+  include Enumerable
   def initialize
     @head = Node.new
     @tail = Node.new
